@@ -1,0 +1,34 @@
+Exercice 1
+
+Question 1
+
+- Que représente un élément du RDD produit ?
+
+Un élément du RDD produit est un couple clé/valeur de type RDD[(ImmutableBytesWritable,Result)] (ImmutableBytesWritable représente le rowkey de la table et Result représente la colonne de la table.
+
+- Comment sont partitionnées les données du RDD produit ?
+
+Une partition du RDD produit correspond à une région.
+
+- Pourquoi utilisons nous la méthode newAPIHadoopRDD ?
+
+La méthode newAPIHadoopRDD offre des fonctionnalités de base pour la lecture des données stockées dans Hadoop notamment l'InputFormat de Hadoop.
+
+
+Question 2
+
+- Comment le RDD est traduit en table Hbase ?
+
+Pour chaque partition du RDD, une connexion avec Hbase va être produite pour faire l'écriture.
+
+- Pourquoi avons-nous utiliser l’action foreachPartition au lieu de l’action foreach ?
+
+L’action foreachPartition est plus puissante qu'un foreach car elle permet de faire raisonner sur un ensemble d'éléments au lieu d'un.
+
+- Pourquoi les mutations de type Put et Delete sont-elles ajoutées dans des listes avant d’être envoyées ?
+
+Les mutations de type Put et Delete sont ajoutées dans des listes avant d'être envoyées afin d'être envoyer qu'une seule fois au lieu de plusieurs.
+
+- Que se passerait-il si on avait déclaré class RDDHbase(rdd:RDD[Mutation]) au lieu de class RDDHbase[M<:Mutation](rdd:RDD[M]) ?
+
+Si on avait déclaré class RDDHbase(rdd:RDD[Mutation]) au lieu de class RDDHbase[M<:Mutation](rdd:RDD[M]) on aurait eu la possibilité d'avoir des descendants de Mutation dans le RDD.

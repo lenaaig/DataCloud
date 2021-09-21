@@ -1,0 +1,88 @@
+Lenaïg Tasso 3407352
+
+# avec les hashtags : correction du prof
+
+Exercice 1
+
+Question 4
+
+Il y a 3 containers lancés.
+
+Question 5
+
+-rw-r--r--   1 3407352 supergroup          0 2020-10-19 14:53 /170/_SUCCESS
+-rw-r--r--   1 3407352 supergroup       2469 2020-10-19 14:53 /170/part-r-00000
+
+Question 6
+
+Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+
+#170 Mo => 1 map qui traite 128mo et 1 map qui traite 42 mo
+
+Question 7
+
+Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+
+Il y en a une de moins.
+
+#20 Mo => 1 map qui traite 20 Mo
+
+Question 8
+
+	Job Counters 
+		Launched map tasks=3
+		Launched reduce tasks=1
+
+
+Ca marche moins bien si il y a plusieurs petits fichiers.
+
+#150Mo + 20 Mo => 1 map qui traite 128Mo fich1
+		1 map qui traite 42Mo fich1
+		1 map qui traite 20Mo fich2
+
+
+Question 9
+
+#Taille d'un bloc hdfs : 128Mo
+#Conclusion : par défaut nbsplit = nbbloc (par défaut 128Mo)
+
+
+Ca marche moins bien quand il y a plusieurs entrées. Plus il y a d'entrées plus il ya de map.
+
+Question 10
+
+Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+
+Ce n'est pas cohérent.
+
+#Attendu : 1 map qui fait 128 Mo et 1 map qui fait 12 Mo
+#Réalité : 1 seul map
+
+#Pour chaque fichier, on découpe selon la taille du split et si il reste un relica dont la taille est inférieur à 10% de la taille du split, on ajoute ce relica au dernier split crée.
+
+Question 12
+
+
+
+Question 13
+
+avec true
+
+	Job Counters 
+		Killed map tasks=1
+		Launched map tasks=3
+		Launched reduce tasks=1
+
+
+sans true
+
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+
